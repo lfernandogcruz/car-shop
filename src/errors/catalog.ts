@@ -5,7 +5,7 @@ export enum ErrorTypes {
 }
 
 type ErrorResponseObject = {
-  message: string;
+  error: string;
   httpStatus: number;
 };
 
@@ -15,15 +15,15 @@ export type ErrorCatalog = {
 
 export const errorCatalog: ErrorCatalog = {
   EntityNotFound: {
-    message: 'Entity not found',
+    error: 'Entity not found',
     httpStatus: 404,
   },
   InvalidMongoId: {
-    message: 'Id must be a 24 characters hexadecimal',
+    error: 'Id must be a 24 characters hexadecimal',
     httpStatus: 400,
   },
   InvalidCarId: {
-    message: 'Id must be a 24 characters hexadecimal',
+    error: 'Id must be a 24 characters hexadecimal',
     httpStatus: 400,
   },
 };
