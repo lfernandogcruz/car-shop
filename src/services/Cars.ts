@@ -14,7 +14,6 @@ class CarsService implements IService<ICar> {
     const parsed = carZodSchema.safeParse(obj);
 
     if (!parsed.success) throw parsed.error;
-    console.log('<><><><><<><><>< parsed', parsed);
     return this._car.create(parsed.data);
   }
 
