@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import IService from '../interfaces/IService';
+import { IService } from '../interfaces/IService';
 import { ICar } from '../interfaces/ICar';
 
 class CarController {
-  constructor(private _service: IService<ICar>) { }
+  constructor(private _service: IService<ICar>) {}
 
   public async create(req: Request, res: Response<ICar>) {
     const { body } = req;
