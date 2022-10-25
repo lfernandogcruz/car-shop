@@ -5,7 +5,7 @@ const Motocas = ['Street', 'Custom', 'Trail'] as const;
 
 const motorcycleZodSchema = vehicleZodSchema.extend({
   category: z.enum(Motocas),
-  engineCapacity: z.number().int().max(2500),
+  engineCapacity: z.number().int().min(1).max(2500),
 });
 
 export type IMotorcycle = z.infer<typeof motorcycleZodSchema>;
