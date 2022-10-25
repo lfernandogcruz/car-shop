@@ -26,7 +26,7 @@ describe('Cars Controller', () => {
     sinon.restore()
   })
 
-  describe('Create Frame', () => {
+  describe('Create Car', () => {
     it('Success', async () => {
       req.body = carsMock;
       await carsController.create(req, res);
@@ -35,7 +35,7 @@ describe('Cars Controller', () => {
     });
   });
 
-  describe('ReadOne Frame', () => {
+  describe('ReadOne Car', () => {
     it('Success', async () => {
       req.params = { id: carsMockWithId._id };
       await carsController.readOne(req, res);

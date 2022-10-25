@@ -1,5 +1,3 @@
-// ./src/tests/mocks/frameMock.ts
-
 import { ICar } from '../../interfaces/ICar';
 
 const carsMock: ICar = {
