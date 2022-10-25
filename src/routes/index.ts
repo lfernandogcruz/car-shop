@@ -1,3 +1,4 @@
 import carsRouter from './cars.route';
+import motorcyclesRouter from './motorcycles.route';
 
-export default { carsRouter };
+export default { carsRouter, motorcyclesRouter };
