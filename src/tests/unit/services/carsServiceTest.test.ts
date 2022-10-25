@@ -6,22 +6,20 @@ import CarsModel from '../../../models/Cars';
 import CarsService from '../../../services/Cars';
 import { carsMock, carsMockWithId } from '../../mock/carsMock';
 
-describe('Frame Service', () => {
+describe('Cars Service', () => {
 	const carsModel = new CarsModel();
 	const frameService = new CarsService(carsModel);
 
 	before(() => {
 		sinon.stub(carsModel, 'create').resolves(carsMockWithId);
 		sinon.stub(carsModel, 'readOne')
-      // na chamada de index 0 `frameModel.readOne` vai responder um fakeFrame
 			.onCall(0).resolves(carsMockWithId) 
-      // já na próxima chamada ele vai mudar seu retorno, isso pode ser feito várias vezes
 			.onCall(1).resolves(null); 
 	})
 	after(() => {
 		sinon.restore()
 	})
-	describe('Create Frame', () => {
+	describe('Create Car', () => {
 		it('Success', async () => {
 			const frameCreated = await frameService.create(carsMock);
 
@@ -40,7 +38,7 @@ describe('Frame Service', () => {
 		});
 	});
 
-	describe('ReadOne Frame', () => {
+	describe('ReadOne Car', () => {
 		it('Success', async () => {
 			const frameCreated = await frameService.readOne(carsMockWithId._id);
 
@@ -50,7 +48,6 @@ describe('Frame Service', () => {
 		it('Failure', async () => {
 			let error;
 			try {
-        // a mesma chamada que o teste acima aqui vai gerar o erro por causa do nosso sinon.stub(...).onCall(1)
 				await frameService.readOne(carsMockWithId._id);
 			} catch (err:any) {
 				error = err;

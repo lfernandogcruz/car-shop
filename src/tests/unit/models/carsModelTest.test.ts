@@ -1,5 +1,3 @@
-// ./src/tests/unit/models/frame.test.ts
-
 import { expect } from 'chai';
 import sinon from 'sinon';
 import CarsModel from '../../../models/Cars';
@@ -18,16 +16,16 @@ describe('Cars Model', () => {
 		sinon.restore();
 	});
 
-  describe('creating a frame', () => {
+  describe('creating a car', () => {
 		it('successfully created', async () => {
 			const newFrame = await carsModel.create(carsMock);
 			expect(newFrame).to.be.deep.equal(carsMockWithId);
 		});
 	});
 
-	describe('searching a frame', () => {
+	describe('searching a car', () => {
 		it('successfully found', async () => {
-			const framesFound = await carsModel.readOne('62cf1fc6498565d94eba52cd');
+			const framesFound = await carsModel.readOne('63571b07749e83681e04faae');
 			expect(framesFound).to.be.deep.equal(carsMockWithId);
 		});
 
