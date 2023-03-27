@@ -14,7 +14,10 @@ describe('Cars Service', () => {
 		sinon.stub(carsModel, 'create').resolves(carsMockWithId);
 		sinon.stub(carsModel, 'readOne')
 			.onCall(0).resolves(carsMockWithId) 
-			.onCall(1).resolves(null); 
+			.onCall(1).resolves(null);
+		sinon.stub(carsModel, 'read')
+			.onCall(2).resolves([carsMockWithId]) 
+			// .onCall(3).resolves(null);
 	})
 	after(() => {
 		sinon.restore()
@@ -49,6 +52,26 @@ describe('Cars Service', () => {
 			let error;
 			try {
 				await frameService.readOne(carsMockWithId._id);
+			} catch (err:any) {
+				error = err;
+			}
+
+			expect(error, 'error should be defined').not.to.be.undefined;
+			expect(error.message).to.be.deep.equal(ErrorTypes.EntityNotFound);
+		});
+	});
+
+	describe('ReadAll Cars', () => {
+		it('Success', async () => {
+			const frameCreated = await frameService.read();
+
+			expect(frameCreated).to.be.deep.equal([carsMockWithId]);
+		});
+
+		it('Failure', async () => {
+			let error;
+			try {
+				await frameService.read();
 			} catch (err:any) {
 				error = err;
 			}
